@@ -15,19 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+
+from EDMSapp import views
+
 from rest_framework.routers import DefaultRouter
+from django.urls import path,include
+from EDMSapp.view import EDMSViewSet
 
-#from EDMSapp import views
+router = DefaultRouter(trailing_slash=False)
+router.register(r'Edms',EDMSViewSet, basename='Edms')
 
-from EDMSapp.views import EDMSViewSet
-
-router = DefaultRouter()
-router.register(r'Edms',EDMSViewSet, basename='Edms-model') 
-
-
-urlpatterns = [
+urlpatterns =[
     path('admin/', admin.site.urls),
-    path('/', include(router.urls)),
-    #path('', views.EDMSview)
+    path('add/', views.EDMScreate),
+    #path('list/', views.list),
+    #path('update/<int:pk>', views.update),
+    #path('modify/<int:pk>', views.modify),
+    #path('delete/<int:pk>', views.destroy),
+    
+    path('edms/',include(router.urls))
 ]
+
+
