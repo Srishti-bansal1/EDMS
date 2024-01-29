@@ -21,19 +21,30 @@ from EDMSapp import views
 from rest_framework.routers import DefaultRouter
 from django.urls import path,include
 from EDMSapp.view import EDMSViewSet
+from EDMSapp.view import emp_add_viewset ,EmpDetailViewSet
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'Edms',EDMSViewSet, basename='Edms')
 
+routers = DefaultRouter(trailing_slash=False)
+routers.register(r'emp_add',emp_add_viewset, basename='emp-add')
+
+router1 = DefaultRouter(trailing_slash=False)
+router1.register(r'emp_all_detail',EmpDetailViewSet, basename='emp-all-detail')
+
 urlpatterns =[
     path('admin/', admin.site.urls),
     path('add/', views.EDMScreate),
-    #path('list/', views.list),
-    #path('update/<int:pk>', views.update),
-    #path('modify/<int:pk>', views.modify),
-    #path('delete/<int:pk>', views.destroy),
+    path('list/', views.list),
+    path('update/<int:pk>', views.update),
+    path('modify/<int:pk>', views.modify),
+    path('delete/<int:pk>', views.destroy),
     
-    path('edms/',include(router.urls))
+    path('edms/',include(router.urls)),
+    
+    path('Eadd/',include(routers.urls)),
+    
+     path('emp_all/',include(router1.urls))
 ]
 
 

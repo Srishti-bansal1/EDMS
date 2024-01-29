@@ -7,7 +7,7 @@ class MyPagination(PageNumberPagination):
     max_page_size = 4
     
     
-    '''def get_page_number(self, request, paginator):
+    '''def get_page_number(self, request, paginator):  #custom page_num overrid the in-built page_num fun
         """
         Get the page number from the request's query parameters.
         """
