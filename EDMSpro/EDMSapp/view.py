@@ -148,21 +148,13 @@ class EmpDetailViewSet(viewsets.ReadOnlyModelViewSet):
    
     @action(detail=False , methods=['GET'],url_path='get_all')
     def get_all_detail(self, request ):
-        print(request)
         queryset = Emp_address.objects.all()
-        print(queryset)
         serializer = EmpDetailSerializer(queryset, many=True) 
-        print(serializer)
-        print(serializer.data)
         return Response(serializer.data)
     
     
     @action(detail=False , methods=['GET'],url_path='get_all_emp')
     def get_all_emp_detail(self, request ):
-        print(request)
         queryset = EDMSmodel.objects.all()
-        print(queryset)
         serializer = AddressDetailSerializer(queryset, many=True) 
-        print(serializer)
-        print(serializer.data)
         return Response(serializer.data)
