@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from EDMSapp.models import EDMSmodel , Emp_address
-from EDMSapp.serializers import AddressDetailSerializer, EDMSSerializer , EaddSerializer , EmpDetailSerializer
+from EDMSapp.serializers import AddressDetailSerializer, EDMSSerializer , EaddSerializer , EmpDetailSerializer,DetailIDSerializer
 from EDMSapp.pagination import MyPagination 
 
 from rest_framework import viewsets ,status
@@ -32,7 +32,6 @@ class EDMSViewSet(viewsets.ModelViewSet):
         offset =((page_num-1)*page_size_num)
         limit = page_size_num*page_num
         res_page = qs[offset:limit]
-        print(res_page)
         serializer = EDMSSerializer(res_page,many=True).data
         return Response(serializer)
 
@@ -127,7 +126,7 @@ class emp_add_viewset(viewsets.ModelViewSet):
             return Response(status=status.HTTP_404_NOT_FOUND)
         
         
-    @action(detail=True , methods=['PUT'],url_path='Add_modify')
+    @action(detail=True , methods=['PUT'],url_path='add_modify')
     def Addmodify(self,request,pk=None):
         EDMS = Emp_address.objects.get(pk=pk)
         serializer = EaddSerializer(instance = EDMS,data= request.data)
@@ -143,6 +142,11 @@ class emp_add_viewset(viewsets.ModelViewSet):
         EDMS = Emp_address.objects.get(pk=pk)  
         EDMS.delete()
         return Response({'message':'data is delete'})
+    
+    @action(detail=False , methods=['DELETE'],url_path='all_add_delete')
+    def remove_all_add(self,request):
+        Emp_address.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 class EmpDetailViewSet(viewsets.ReadOnlyModelViewSet):
    
@@ -169,5 +173,15 @@ class EmpDetailViewSet(viewsets.ReadOnlyModelViewSet):
     def detailaddress(self, request,pk=None):
         queryset = EDMSmodel.objects.get(pk=pk)
         serializer = AddressDetailSerializer(queryset) 
+        return Response(serializer.data)
+    
+    @action(detail=False, methods=["GET"],url_path='one_emp_ID')  #pass pk as user_id in urls as query param
+    def detailUser(self, request):
+        user_id = int(request.GET['user_id'])
+        print(user_id)
+        queryset = EDMSmodel.objects.filter(id =user_id)
+        print(queryset)
+        serializer = DetailIDSerializer(queryset, many=True) 
+        print(serializer)
         return Response(serializer.data)
     
