@@ -31,7 +31,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
         1. Create :- End point - http://127.0.0.1:8000/edms/Edms/create
                      request body - {	
                                         "name"   : <str> ,
-                                        "roll_no"    : <str>,
+                                        "roll_no": <str>,
                                         "email"  : <str>,
                                         "state"  : <str> ,
                                         "city"   : <str> ,
@@ -54,7 +54,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
                    response body - {	
                                         "id "    : <int>,
                                         "name"   : <str> ,
-                                        "roll_no"    : <str>,
+                                        "roll_no": <str>,
                                         "email"  : <str>,
                                         "state"  : <str> ,
                                         "city"   : <str> ,
@@ -66,7 +66,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
         
                       request body - {	
                                         "name"   : <str> ,
-                                        "roll_no"    : <str>,
+                                        "roll_no": <str>,
                                         "email"  : <str>,
                                         "state"  : <str> ,
                                         "city"   : <str> ,
@@ -76,7 +76,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
                       response body - {	
                                         "id "    : <int>,
                                         "name"   : <str> ,
-                                        "roll_no"    : <str>,
+                                        "roll_no": <str>,
                                         "email"  : <str>,
                                         "state"  : <str> ,
                                         "city"   : <str> ,
