@@ -48,7 +48,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
                                         }
                                     	
 
-        2. Read :- End point - http://127.0.0.1:8000/emp_all/emp_all_detail/get_all_emp
+        2. i) Read :- End point - http://127.0.0.1:8000/emp_all/emp_all_detail/get_all_emp
         
         
                    response body - {	
@@ -60,7 +60,17 @@ step 6 : Run the server with command : python manage.py runserver 8000
                                         "city"   : <str> ,
                                         "pin"    : <int>
                                         }	
-                                        
+        
+            ii) Read using pagination :- End point - http://127.0.0.1:8000/edms/Edms/show_null_id?page=${page_no}&page_size=${page_size_no}
+                      response body - {	
+                                        "id "    : <int>,
+                                        "name"   : <str> ,
+                                        "roll_no": <str>,
+                                        "email"  : <str>,
+                                        "state"  : <str> ,
+                                        "city"   : <str> ,
+                                        "pin"    : <int>
+                                        }	
 
         3. Update :-  End point - http://127.0.0.1:8000/edms/Edms/<id>/modify
         
