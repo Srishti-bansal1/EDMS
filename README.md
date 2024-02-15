@@ -28,7 +28,7 @@ step 6 : Run the server with command : python manage.py runserver 8000
 <br>
 
 # API Documentation -<br>
-        1. Create :- End point - http://127.0.0.1:8000/edms/Edms/create
+        1. i) Create :- End point - http://127.0.0.1:8000/edms/Edms/create
                      request body - {	
                                         "name"   : <str> ,
                                         "roll_no": <str>,
@@ -46,11 +46,22 @@ step 6 : Run the server with command : python manage.py runserver 8000
                                         "city"   : <str> ,
                                         "pin"    : <int>
                                         }
-                                    	
-
+             ii) create_emp_address :- End point -http://127.0.0.1:8000/Eadd/emp_add/add_create         	
+                                       request body - {	
+                                                       "emp_model" : <int>,
+                                                       "state"     : <str> ,
+                                                       "city"      : <str> ,
+                                                       "pin"       : <int>
+                                                        }	
+                                      response body - {	
+                                                        "id "       : <int>,
+                                                        "emp_model" : <int>,
+                                                        "state"     : <str> ,
+                                                        "city"      : <str> ,
+                                                        "pin"       : <int>
+                                                        }
+                                        
         2. i) Read :- End point - http://127.0.0.1:8000/emp_all/emp_all_detail/get_all_emp
-        
-        
                    response body - {	
                                         "id "    : <int>,
                                         "name"   : <str> ,
@@ -61,18 +72,51 @@ step 6 : Run the server with command : python manage.py runserver 8000
                                         "pin"    : <int>
                                         }	
         
-            ii) Read using pagination :- End point - http://127.0.0.1:8000/edms/Edms/show_null_id?page=${page_no}&page_size=${page_size_no}
-                      response body - {	
-                                        "id "    : <int>,
-                                        "name"   : <str> ,
-                                        "roll_no": <str>,
-                                        "email"  : <str>,
-                                        "state"  : <str> ,
-                                        "city"   : <str> ,
-                                        "pin"    : <int>
-                                        }	
+            ii) Read using page_no :- End point - http://127.0.0.1:8000/edms/Edms/show_null_id?page=${page_no}&page_size=${page_size_no}
+                                         response body - {	
+                                                            "id "    : <int>,
+                                                            "name"   : <str> ,
+                                                            "roll_no": <str>,
+                                                            "email"  : <str>,
+                                                            "manger  : <int>
+                                                          }	
 
-        3. Update :-  End point - http://127.0.0.1:8000/edms/Edms/<id>/modify
+            iii) Read_all_entry :-  End point - http://127.0.0.1:8000/edms/Edms/show_all
+                                    response body - {	
+                                                            "id "    : <int>,
+                                                            "name"   : <str> ,
+                                                            "roll_no": <str>,
+                                                            "email"  : <str>,
+                                                            "manger  : <int>
+                                                          }	
+
+             iv) Read_using_pagination :-  End point - http://127.0.0.1:8000/edms/Edms/show
+                                             response body - {	
+                                                            "id "    : <int>,
+                                                            "name"   : <str> ,
+                                                            "roll_no": <str>,
+                                                            "email"  : <str>,
+                                                            "manger  : <int>
+                                                          }	
+
+              v) Read_single-entry using id :-  End point - http://127.0.0.1:8000/edms/Edms/<id>one_display
+                                                  response body - {	
+                                                            "id "    : <int>,
+                                                            "name"   : <str> ,
+                                                            "roll_no": <str>,
+                                                            "email"  : <str>,
+                                                            "manger  : <int>
+                                                         
+              vi) Read_emp_address :- End point - http://127.0.0.1:8000/Eadd/emp_add/get_add
+                                      response body - {	
+                                                        "id "       : <int>,
+                                                        "emp_model" : <int>,
+                                                        "state"     : <str> ,
+                                                        "city"      : <str> ,
+                                                        "pin"       : <int>
+                                                        }
+                                                        
+        3.i) Update :-  End point - http://127.0.0.1:8000/edms/Edms/<id>/modify
         
                       request body - {	
                                         "name"   : <str> ,
@@ -93,7 +137,28 @@ step 6 : Run the server with command : python manage.py runserver 8000
                                         "pin"    : <int>
                                         }	       
                                                      
+           ii) Modify_emp_address using ID :- End point - http://127.0.0.1:8000/Eadd/emp_add/<id>/Add_modify
+                                                request body - {	
+                                                                 "emp_model"   : <int>,
+                                                                 "state"  : <str> ,
+                                                                 "city"   : <str> ,
+                                                                 "pin"    : <int>
+                                                               }	
+                                    
+                                               response body - {	
+                                                               "id "       : <int>,
+                                                               "emp_model" : <int>,
+                                                               "state"     : <str> ,
+                                                               "city"      : <str> ,
+                                                               "pin"       : <int>
+                                                                }	       
         
-        4. Delete :- End point - http://127.0.0.1:8000/Eadd/emp_add/delete
+        4. i) Delete :- End point - http://127.0.0.1:8000/Eadd/emp_add/delete
     
-                     response body - empty
+                         response body - empty
+
+          ii) Delete using ID :-  End point - http://127.0.0.1:8000/edms/Edms/<id>/delete
+                                   response body - empty
+
+         iii) Delete_address using ID :- End point - http://127.0.0.1:8000/Eadd/emp_add/<id>/add_delete
+                                         response body - empty
